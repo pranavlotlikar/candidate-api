@@ -27,16 +27,16 @@ public class CandidateController {
 	@GetMapping("/entercandidate")
 	public ResponseEntity<String> enterCandidate(@RequestParam String name) {
 		Candidate candidate = new Candidate(name);
-		return new ResponseEntity<String>(candidateDao.add(candidate), HttpStatus.OK);
+		return new ResponseEntity<String>(candidateDao.add(candidate), HttpStatus.CREATED);
 	}
 	
 	@GetMapping("/castvote")
-	public void castVote(@RequestParam String name) {
-		candidateDao.castVote(name);
+	public String castVote(@RequestParam String name) {
+		return candidateDao.castVote(name);
 	}
 	
 	@GetMapping("/countvote")
-	public int countVote(@RequestParam String name) {
+	public String countVote(@RequestParam String name) {
 		return candidateDao.getCount(name);
 	}
 	
@@ -44,12 +44,18 @@ public class CandidateController {
 	public ResponseEntity<List<Candidate>> listvote() {
 		ResponseEntity<List<Candidate>> response = new ResponseEntity<List<Candidate>>(
 				candidateDao.getCandidates(), HttpStatus.OK);
+	
 		return response;
 	}
 	
 	@GetMapping("/getwinner")
 	public List<Candidate> getWinner() {
 		return candidateDao.getWinner();
+	}
+	
+	@GetMapping("/candidates")
+	public List<String> getCandidateNames() {
+		return candidateDao.getCandidateNames();
 	}
 	
 }
