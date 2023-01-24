@@ -147,10 +147,4 @@ public class CandidateDaoTest {
 		}
 	}
 
-//	
-//	@Test
-//	public void testAddExistingCandidate() {
-//		assertEquals("Candidate already exists", dao.add(new Candidate("Pranav")));
-//	}
-
 }
