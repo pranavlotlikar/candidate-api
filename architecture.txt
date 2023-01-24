@@ -1,0 +1,21 @@
+Candidate API Architecture & Design
+
+The classes span across 3 main layers:
+1. Controller
+- Here, all the valid API requests are handled.
+- It needs the Dao for all the API operations to take place.
+- It returns the data in JSON format.
+
+2. Dao
+- This layer does all the major data operations such as: adding a candidate, casting a vote, 
+  getting latest count, listing all candidates and fetching the winner.
+- It also declares and initializes the temporary data which is a List of Candidates.
+- Validation for invalid/empty names is handle over here.
+
+3. Entity
+- Contains the Candidate entity which models the data being stored. 
+- It contains 2 fields: name and votes
+- Although this API does not use a database, this entity object can be mapped to a table
+
+
+There is also an additional package which groups code to handle Custom Exceptions.
